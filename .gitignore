@@ -15,8 +15,6 @@ env/
 *.swo
 
 # Data & Models (generated)
-data/driving_behavior.db
-data/raw/driving_data.csv
 models/*.joblib
 artifacts/*.json
 artifacts/*.png
