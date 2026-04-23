@@ -7,11 +7,12 @@ Interactive prediction interface with sliders, presets, and visual results.
 
 import sys
 import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import plotly.graph_objects as go
 from src.predictor import DrivingBehaviorPredictor
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 st.set_page_config(page_title="Live Predictions", page_icon="🎯", layout="wide")
 

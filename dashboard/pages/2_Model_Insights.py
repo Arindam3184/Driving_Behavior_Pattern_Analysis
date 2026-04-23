@@ -7,6 +7,9 @@ Model evaluation metrics, confusion matrix, feature importance, and comparison.
 
 import sys
 import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import json
 import streamlit as st
 import pandas as pd
@@ -14,8 +17,6 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from src.config import METRICS_PATH
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 st.set_page_config(page_title="Model Insights", page_icon="🧠", layout="wide")
 
@@ -52,9 +53,8 @@ st.markdown("---")
 chart_layout = dict(
     plot_bgcolor="#FFFFFF", paper_bgcolor="rgba(0,0,0,0)",
     font=dict(family="Inter", color="#2D3436", size=12),
-    xaxis=dict(gridcolor="#F0F0F0", showline=True, linecolor="#DFE6E9"),
-    yaxis=dict(gridcolor="#F0F0F0", showline=True, linecolor="#DFE6E9"),
 )
+chart_axis_defaults = dict(gridcolor="#F0F0F0", showline=True, linecolor="#DFE6E9")
 
 
 
@@ -95,10 +95,10 @@ with tab1:
                 z=cm_array, x=class_labels, y=class_labels,
                 colorscale=[[0, "#FFFFFF"], [0.5, "#FAB1A0"], [1, "#E17055"]],
                 text=cm_array, texttemplate="%{text}", textfont={"size": 20, "color": "#2D3436"},
-                showscale=True, colorbar=dict(title="Count", titlefont=dict(color="#636E72"), tickfont=dict(color="#636E72"))
+                showscale=True, colorbar=dict(title=dict(text="Count", font=dict(color="#636E72")), tickfont=dict(color="#636E72"))
             ))
             fig.update_layout(**chart_layout, height=450, title="Confusion Matrix",
-                              xaxis=dict(title="Predicted Label"), yaxis=dict(title="Actual Label", autorange="reversed"))
+                              xaxis=dict(**chart_axis_defaults, title="Predicted Label"), yaxis=dict(**chart_axis_defaults, title="Actual Label", autorange="reversed"))
             st.plotly_chart(fig, use_container_width=True)
         with c2:
             cm_norm = np.round(cm_array.astype(float) / cm_array.sum(axis=1, keepdims=True) * 100, 1)
@@ -109,7 +109,7 @@ with tab1:
                 showscale=False, zmin=0, zmax=100
             ))
             fig.update_layout(**chart_layout, height=450, title="Normalized (%)",
-                              xaxis=dict(title="Predicted"), yaxis=dict(title="Actual", autorange="reversed"))
+                              xaxis=dict(**chart_axis_defaults, title="Predicted"), yaxis=dict(**chart_axis_defaults, title="Actual", autorange="reversed"))
             st.plotly_chart(fig, use_container_width=True)
 
         total, correct = cm_array.sum(), np.trace(cm_array)
@@ -151,7 +151,7 @@ with tab2:
                     text=[f"{class_metrics[c].get(m,0)*100:.1f}%" for c in class_metrics], textposition="outside",
                     textfont=dict(color="#2D3436")))
             fig.update_layout(**chart_layout, barmode="group", height=380, title="Per-Class Metrics",
-                              yaxis=dict(range=[0, 1.15], title="Score"))
+                              xaxis=dict(**chart_axis_defaults), yaxis=dict(**chart_axis_defaults, range=[0, 1.15], title="Score"))
             st.plotly_chart(fig, use_container_width=True)
 
     roc_auc = metrics.get("roc_auc")
@@ -176,7 +176,7 @@ with tab3:
             text=[f"{v:.3f}" for v in imp_df["Importance"]], textposition="outside", textfont=dict(color="#2D3436", size=12)
         ))
         fig.update_layout(**chart_layout, height=550, title="Feature Importance", margin=dict(l=180),
-                          xaxis=dict(title="Importance"))
+                          xaxis=dict(**chart_axis_defaults, title="Importance"), yaxis=dict(**chart_axis_defaults))
         st.plotly_chart(fig, use_container_width=True)
 
         top5 = imp_df.tail(5).sort_values("Importance", ascending=False)

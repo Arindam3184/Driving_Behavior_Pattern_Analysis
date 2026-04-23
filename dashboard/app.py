@@ -6,18 +6,17 @@ Overview page with KPIs, behavior distribution, and model summary.
 Redesigned: Light theme, card-based layout inspired by admin dashboard.
 """
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import sys
 import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from src.config import METRICS_PATH
 from src.db_manager import query_to_dataframe, init_database, table_exists
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # ─── Page Config ────────────────────────────────────────────────────────────────
 st.set_page_config(
