@@ -14,10 +14,10 @@ env/
 *.swp
 *.swo
 
-# Data & Models (generated)
-models/*.joblib
-artifacts/*.json
-artifacts/*.png
+# Data & Models — tracked for Streamlit Cloud deployment
+# models/*.joblib
+# artifacts/*.json
+# artifacts/*.png
 
 # OS
 .DS_Store

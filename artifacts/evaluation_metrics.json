@@ -1,0 +1,118 @@
+{
+  "model_name": "Random Forest",
+  "test_accuracy": 1.0,
+  "test_precision": 1.0,
+  "test_recall": 1.0,
+  "test_f1": 1.0,
+  "confusion_matrix": [
+    [
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      6
+    ]
+  ],
+  "class_labels": [
+    "Aggressive",
+    "Normal",
+    "Safe"
+  ],
+  "classification_report": {
+    "Aggressive": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 4.0
+    },
+    "Normal": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 5.0
+    },
+    "Safe": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 6.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 15.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 15.0
+    }
+  },
+  "roc_auc": 1.0,
+  "feature_importances": {
+    "avg_braking": 0.1228,
+    "max_rpm": 0.1118,
+    "avg_fuel_consumption": 0.0906,
+    "max_steering_angle": 0.0873,
+    "avg_speed": 0.0819,
+    "avg_rpm": 0.077,
+    "avg_throttle": 0.0756,
+    "avg_acceleration": 0.0733,
+    "max_braking": 0.0616,
+    "avg_steering_angle": 0.0573,
+    "max_acceleration": 0.0489,
+    "acceleration_std": 0.0328,
+    "rapid_acceleration_count": 0.026,
+    "max_speed": 0.017,
+    "steering_variability": 0.0161,
+    "total_distance": 0.0107,
+    "harsh_braking_count": 0.0094,
+    "speed_std": 0.0,
+    "braking_std": 0.0,
+    "throttle_variability": 0.0
+  },
+  "model_comparison": {
+    "Logistic Regression": {
+      "accuracy": 0.9375,
+      "precision": 0.9464,
+      "recall": 0.9375,
+      "f1_score": 0.9354,
+      "cv_f1_mean": 0.8975,
+      "cv_f1_std": 0.137
+    },
+    "Random Forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "f1_score_tuned": 1.0,
+      "best_params": {
+        "max_depth": 10,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100
+      }
+    },
+    "Gradient Boosting": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0
+    }
+  }
+}
