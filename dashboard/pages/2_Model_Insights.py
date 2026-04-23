@@ -4,18 +4,18 @@ Model Insights Page — Light Admin Theme
 Model evaluation metrics, confusion matrix, feature importance, and comparison.
 """
 
+
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
 import json
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-
 from src.config import METRICS_PATH
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 st.set_page_config(page_title="Model Insights", page_icon="🧠", layout="wide")
 
@@ -55,6 +55,8 @@ chart_layout = dict(
     xaxis=dict(gridcolor="#F0F0F0", showline=True, linecolor="#DFE6E9"),
     yaxis=dict(gridcolor="#F0F0F0", showline=True, linecolor="#DFE6E9"),
 )
+
+
 
 @st.cache_data(ttl=300)
 def load_metrics():

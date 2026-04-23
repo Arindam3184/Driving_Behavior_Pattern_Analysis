@@ -6,19 +6,18 @@ Overview page with KPIs, behavior distribution, and model summary.
 Redesigned: Light theme, card-based layout inspired by admin dashboard.
 """
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
 import os
 import json
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import streamlit as st
-import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
-from src.config import DB_PATH, METRICS_PATH, ARTIFACTS_DIR
+from src.config import METRICS_PATH
 from src.db_manager import query_to_dataframe, init_database, table_exists
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # ─── Page Config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -314,11 +313,13 @@ if not table_exists("driving_data") or not table_exists("features"):
     st.stop()
 
 # Load data
+
 @st.cache_data(ttl=300)
 def load_overview_data():
     driving_data = query_to_dataframe("SELECT * FROM driving_data")
     features_data = query_to_dataframe("SELECT * FROM features")
     return driving_data, features_data
+
 
 @st.cache_data(ttl=300)
 def load_metrics():
